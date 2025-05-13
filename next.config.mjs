@@ -10,7 +10,7 @@ const nextConfig = {
     unoptimized: true,
   },
   env: {
-    BACKEND_URL: "https://kiosk-checkin-backend.onrender.com/",
+    BACKEND_URL: "https://le-vietnam-checkin-backend.onrender.com/",
   },
 };
 

@@ -156,7 +156,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.5 }}
             >
-              {customerName}, your current points:
+              {customerName}, your number of visits:
             </motion.p>
           )}
         </AnimatePresence>
