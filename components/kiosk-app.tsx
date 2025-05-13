@@ -46,7 +46,7 @@ export default function KioskApp() {
     setTimeout(() => {
       setCurrentScreen("welcome")
       setPhoneNumber("")
-      setCustomerName
+      setCustomerName("")
     }, 8000)
   }
   

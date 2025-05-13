@@ -31,6 +31,7 @@ export default function CheckinScreen({
 
   const handleClear = () => {
     setPhoneNumber("");
+    setCustomerName("");
   };
 
   const handleBackspace = () => {
@@ -315,7 +316,7 @@ export default function CheckinScreen({
           <div className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800">
           <input
               type="text"
-              value={customerName}
+             // value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
               placeholder="Enter your name"
               className="w-full text-center text-black focus:outline-none"
