@@ -2,12 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import axios from 'axios';
 
 interface WelcomeScreenProps {
   onTap: () => void;
 }
 
 export default function WelcomeScreen({ onTap }: WelcomeScreenProps) {
+  
   return (
     <motion.div
       className="relative w-full h-full overflow-hidden cursor-pointer"
@@ -107,7 +109,7 @@ export default function WelcomeScreen({ onTap }: WelcomeScreenProps) {
           }}
         >
           <h1 className="text-5xl font-bold mb-2">TAP TO</h1>
-          <h1 className="text-6xl font-bold">CHECKIN</h1>
+          <h1 className="text-6xl font-bold">CHECK IN</h1>
         </motion.div>
 
         {/* Beauty Icons */}

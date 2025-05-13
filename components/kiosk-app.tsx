@@ -27,7 +27,7 @@ export default function KioskApp() {
     // The validation is now handled in the CheckinScreen component
     try {
       const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:5000/";
-      const res = await axios.post(BACKEND_URL + 'api/checkin/checkin', { phone: phoneNumber, name: customerName });
+      const res = await axios.post(BACKEND_URL + 'api/checkin/checkin', { phone: phoneNumber, name: customerName, status: "waiting" });
       console.log(res.data);
       setPoints(res.data.rewardPoints);
       setCustomerName(res.data.customerName);
@@ -40,7 +40,8 @@ export default function KioskApp() {
       }
     }
     setCurrentScreen("success")
-
+    //const res = await axios.get(process.env.BACKEND_URL + 'api/checkin/', {  });
+    //console.log(res.data);
     // Reset to welcome screen after 8 seconds
     setTimeout(() => {
       setCurrentScreen("welcome")
