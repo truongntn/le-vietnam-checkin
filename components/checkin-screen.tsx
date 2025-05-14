@@ -92,7 +92,7 @@ export default function CheckinScreen({
     <div className="flex flex-col md:flex-row w-full h-screen">
       {/* Left Side - Promotional Content */}
       <div
-        className="w-full md:w-1/2 p-6 flex flex-col"
+        className="w-full md:w-1/2 p-6 flex flex-col h-full"
         style={{ backgroundColor: "#f05122" }}
       >
         {/* Rearranged layout - Promotional carousel moved higher */}
@@ -277,15 +277,15 @@ export default function CheckinScreen({
       </div>
 
       {/* Right Side - Phone Entry */}
-      <div className="w-full md:w-1/2 bg-white p-6 flex flex-col">
-        <div className="flex justify-end mb-4">
+      <div className="w-full md:w-1/2 bg-white p-6 flex flex-col  h-full">
+        {/*<div className="flex justify-end mb-4">
           <div className="flex items-center">
-            {/*<div
+            <div
               className="h-6 w-6 rounded-full flex items-center justify-center mr-1"
               style={{ backgroundColor: "#f05122" }}
             >
               <span className="text-white font-bold text-sm">L</span>
-            </div>*/}
+            </div>
             <span className="font-bold text-gray-800">
               <Image
                 src="/images/le-vietnam.png"
@@ -296,7 +296,7 @@ export default function CheckinScreen({
               />
             </span>
           </div>
-        </div>
+        </div>*/}
 
         <div className="text-center mb-4">
           <h2 className="text-2xl font-bold text-gray-800 mb-1">
