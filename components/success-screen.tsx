@@ -116,7 +116,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
         <AnimatePresence>
           {showText && (
             <motion.h1
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="text-4xl md:text-2xl font-bold mb-6"
               style={{ color: "#000000" }}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacitycolor: "#000000" }}
@@ -129,19 +129,19 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
               }}
             >
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2, duration: 0.3 }}>
-                You
+              Please
               </motion.span>{" "}
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.3 }}>
-                have
+              be
               </motion.span>{" "}
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.3 }}>
-                checked
+              patient.
               </motion.span>{" "}
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 0.3 }}>
-                in
+              We will bring out your food
               </motion.span>{" "}
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0, duration: 0.3 }}>
-                successfully!
+              shortly!
               </motion.span>
             </motion.h1>
           )}

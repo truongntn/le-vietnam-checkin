@@ -108,8 +108,8 @@ export default function WelcomeScreen({ onTap }: WelcomeScreenProps) {
             repeatType: "reverse",
           }}
         >
-          <h1 className="text-5xl font-bold mb-2">TAP TO</h1>
-          <h1 className="text-6xl font-bold">CHECK IN</h1>
+          <h1 className="text-5xl font-bold mb-2"> Tap To Collect</h1>
+          <h1 className="text-6xl font-bold">Your Pre-Order</h1>
         </motion.div>
 
         {/* Beauty Icons */}
