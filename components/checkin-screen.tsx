@@ -89,7 +89,7 @@ export default function CheckinScreen({
   ];
 
   return (
-    <div className="flex flex-col md:flex-row w-full h-full">
+    <div className="flex flex-col md:flex-row w-full h-screen">
       {/* Left Side - Promotional Content */}
       <div
         className="w-full md:w-1/2 p-6 flex flex-col"
