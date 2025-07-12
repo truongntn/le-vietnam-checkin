@@ -90,12 +90,11 @@ export default function CheckinScreen({
 
   return (
     <div className="flex flex-col md:flex-row w-full h-screen">
-      {/* Left Side - Promotional Content */}
+      {/* Left Side - Promotional Content 
       <div
         className="w-full md:w-1/2 p-6 flex flex-col h-full"
         style={{ backgroundColor: "#070923" }}
       >
-        {/* Rearranged layout - Promotional carousel moved higher */}
         <div className="mb-4 text-center">
           <div className="w-48 h-auto mx-auto mb-2">
             <Image
@@ -117,7 +116,6 @@ export default function CheckinScreen({
           </p>
         </div>
 
-        {/* Promotional carousel - increased height */}
         <div className="flex-1 flex items-start justify-center relative pt-20">
           <motion.div
             className="w-full flex items-center"
@@ -125,7 +123,6 @@ export default function CheckinScreen({
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {/* Enhanced left arrow button */}
             <button
               onClick={prevSlide}
               className="absolute left-0 z-10 bg-white/20 hover:bg-white/40 rounded-full w-10 h-10 flex items-center justify-center -ml-1 transform -translate-x-1/2 transition-all duration-300 backdrop-blur-sm"
@@ -134,10 +131,9 @@ export default function CheckinScreen({
               <ChevronLeft className="h-6 w-6 text-white" />
             </button>
 
-            {/* Added border radius to the slider container and increased height */}
             <div className="w-full overflow-hidden rounded-2xl shadow-lg">
               <motion.div
-                className="flex h-64" /* Increased height */
+                className="flex h-64" 
                 initial={{ x: 0 }}
                 animate={{ x: -currentSlide * 100 + "%" }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -161,7 +157,6 @@ export default function CheckinScreen({
                         {slide.highlight}
                       </p>
 
-                      {/* Added decorative elements based on slide content */}
                       {index === 0 && (
                         <div className="mt-4 flex items-center">
                           <motion.div
@@ -235,7 +230,6 @@ export default function CheckinScreen({
               </motion.div>
             </div>
 
-            {/* Enhanced right arrow button */}
             <button
               onClick={nextSlide}
               className="absolute right-0 z-10 bg-white/20 hover:bg-white/40 rounded-full w-10 h-10 flex items-center justify-center -mr-1 transform translate-x-1/2 transition-all duration-300 backdrop-blur-sm"
@@ -259,7 +253,6 @@ export default function CheckinScreen({
           ))}
         </div>
 
-        {/* Empty space to push agreement to bottom */}
         <div className="flex-1"></div>
 
         <div className="mt-4">
@@ -279,14 +272,28 @@ export default function CheckinScreen({
             </span>
           </label>
         </div>
-      </div>
+      </div>*/}
 
       {/* Right Side - Phone Entry */}
       <div
-        className="w-full md:w-1/2 bg-white p-6 flex flex-col  h-full"
+        className="w-full md:w-1/1 bg-white p-6 flex flex-col justify-center items-center w-full h-full"
         style={{ backgroundColor: "#070923" }}
       >
-        {/*<div className="flex justify-end mb-4">
+        <div
+          className="w-full max-w-md p-12"
+          style={{
+            backgroundColor: "#070923",
+            border: "3px solid",
+            borderImage: "linear-gradient(45deg, #31DCFF, #F88BFE, #A2C0FE) 1",
+            boxShadow: `
+      0 0 20px rgba(49, 220, 255, 0.4),
+      0 0 40px rgba(248, 139, 254, 0.3),
+      0 0 60px rgba(162, 192, 254, 0.2),
+      inset 0 0 20px rgba(49, 220, 255, 0.1)
+    `,
+          }}
+        >
+          {/*<div className="flex justify-end mb-4">
           <div className="flex items-center">
             <div
               className="h-6 w-6 rounded-full flex items-center justify-center mr-1"
@@ -306,46 +313,52 @@ export default function CheckinScreen({
           </div>
         </div>*/}
 
-        <div className="text-center mb-4">
-          <h2
-            className="text-2xl font-bold text-gray-800 mb-1"
-            style={{ color: "#F3B5FD" }}
-          >
-            PLEASE ENTER PHONE NUMBER AND NAME
-          </h2>
-          <p className="text-gray-600 text-sm" style={{ color: "#F3B5FD" }}>
-            Your info will not be shared with any third party
-          </p>
-        </div>
+          <div className="text-center mb-4">
+            <h2
+              className="text-2xl font-bold text-gray-800 mb-1"
+              style={{ color: "#F3B5FD" }}
+            >
+              PLEASE ENTER PHONE NUMBER AND NAME
+            </h2>
+            <p className="text-gray-600 text-sm" style={{ color: "#F3B5FD" }}>
+              Your info will not be shared with any third party
+            </p>
+          </div>
 
-        <div className="mb-8">
-          <div className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800" style={{ color: "#fff" }}>
-            {formatPhoneNumber(phoneNumber) || "Enter your number"}
+          <div className="mb-8">
+            <div
+              className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800"
+              style={{ color: "#fff" }}
+            >
+              {formatPhoneNumber(phoneNumber) || "Enter your number"}
+            </div>
           </div>
-        </div>
-        <div className="mb-8">
-          <div className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800"style={{ color: "#F3B5FD" }}>
-            <input
-              type="text"
-              // value={customerName}
-              onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="Enter your name"
-              className="w-full text-center text-black focus:outline-none"
-              style={{ backgroundColor: "#070923", color: "#fff" }}
-              //onClick={() => setActiveInput("name")}
-            />
+          <div className="mb-8">
+            <div
+              className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800"
+              style={{ color: "#F3B5FD" }}
+            >
+              <input
+                type="text"
+                // value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                placeholder="Enter your name"
+                className="w-full text-center text-black focus:outline-none"
+                style={{ backgroundColor: "#070923", color: "#fff" }}
+                //onClick={() => setActiveInput("name")}
+              />
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num, index) => (
-            <motion.button
-              key={num}
-              onClick={() => handleNumberClick(num.toString())}
-              className="h-16 rounded-full border flex items-center justify-center text-2xl font-medium transition-colors"
-              style={{
-                borderColor: `linear-gradient(45deg, #31DCFF, #F88BFE, #A2C0FE)`,
-                color: "#31DCFF",
-                boxShadow: `
+          <div className="grid grid-cols-3 gap-4 mb-8">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num, index) => (
+              <motion.button
+                key={num}
+                onClick={() => handleNumberClick(num.toString())}
+                className="h-16 rounded-full border flex items-center justify-center text-2xl font-medium transition-colors"
+                style={{
+                  borderColor: `linear-gradient(45deg, #31DCFF, #F88BFE, #A2C0FE)`,
+                  color: "#31DCFF",
+                  boxShadow: `
           0 0 10px ${
             index % 3 === 0
               ? "rgba(49, 220, 255, 0.3)"
@@ -375,9 +388,9 @@ export default function CheckinScreen({
               : "rgba(162, 192, 254, 0.1)"
           }
         `,
-              }}
-              whileHover={{
-                boxShadow: `
+                }}
+                whileHover={{
+                  boxShadow: `
           0 0 15px ${
             index % 3 === 0
               ? "rgba(49, 220, 255, 0.5)"
@@ -407,16 +420,16 @@ export default function CheckinScreen({
               : "rgba(162, 192, 254, 0.2)"
           }
         `,
-              }}
-              whileTap={{
-                scale: 0.95,
-                backgroundColor:
-                  index % 3 === 0
-                    ? "rgba(49, 220, 255, 0.1)"
-                    : index % 3 === 1
-                    ? "rgba(248, 139, 254, 0.1)"
-                    : "rgba(162, 192, 254, 0.1)",
-                boxShadow: `
+                }}
+                whileTap={{
+                  scale: 0.95,
+                  backgroundColor:
+                    index % 3 === 0
+                      ? "rgba(49, 220, 255, 0.1)"
+                      : index % 3 === 1
+                      ? "rgba(248, 139, 254, 0.1)"
+                      : "rgba(162, 192, 254, 0.1)",
+                  boxShadow: `
           0 0 20px ${
             index % 3 === 0
               ? "rgba(49, 220, 255, 0.7)"
@@ -446,89 +459,92 @@ export default function CheckinScreen({
               : "rgba(162, 192, 254, 0.3)"
           }
         `,
+                }}
+              >
+                {num}
+              </motion.button>
+            ))}
+            <motion.button
+              onClick={handleClear}
+              className="h-16 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
+              whileTap={{
+                scale: 0.95,
+                backgroundColor: "rgba(156, 163, 175, 0.1)",
               }}
             >
-              {num}
+              <ArrowLeft className="h-6 w-6" />
             </motion.button>
-          ))}
-          <motion.button
-            onClick={handleClear}
-            className="h-16 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
-            whileTap={{
-              scale: 0.95,
-              backgroundColor: "rgba(156, 163, 175, 0.1)",
-            }}
-          >
-            <ArrowLeft className="h-6 w-6" />
-          </motion.button>
-          <motion.button
-            onClick={() => handleNumberClick("0")}
-            className="h-16 rounded-full border flex items-center justify-center text-2xl font-medium transition-colors"
-            style={{
-        borderColor: "#F88BFE",
-        padding: "2px",
-        color: "#31DCFF",
-        boxShadow: `
+            <motion.button
+              onClick={() => handleNumberClick("0")}
+              className="h-16 rounded-full border flex items-center justify-center text-2xl font-medium transition-colors"
+              style={{
+                borderColor: "#F88BFE",
+                padding: "2px",
+                color: "#31DCFF",
+                boxShadow: `
           0 0 10px rgba(248, 139, 254, 0.3),
           0 0 20px rgba(248, 139, 254, 0.2),
           0 0 30px rgba(248, 139, 254, 0.1),
           inset 0 0 10px rgba(248, 139, 254, 0.1)
         `,
-      }}
-      whileHover={{
-        boxShadow: `
+              }}
+              whileHover={{
+                boxShadow: `
           0 0 15px rgba(49, 220, 255, 0.5),
           0 0 30px rgba(248, 139, 254, 0.3),
           0 0 45px rgba(162, 192, 254, 0.2),
           inset 0 0 15px rgba(49, 220, 255, 0.2)
         `,
-      }}
-      whileTap={{
-        scale: 0.95,
-        boxShadow: `
+              }}
+              whileTap={{
+                scale: 0.95,
+                boxShadow: `
           0 0 20px rgba(49, 220, 255, 0.7),
           0 0 40px rgba(248, 139, 254, 0.4),
           0 0 60px rgba(162, 192, 254, 0.3),
           inset 0 0 20px rgba(49, 220, 255, 0.3)
         `,
-      }}
-          >
-            0
-          </motion.button>
-          <motion.button
-            onClick={handleBackspace}
-            className="h-16 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
-            whileTap={{
-              scale: 0.95,
-              backgroundColor: "rgba(156, 163, 175, 0.1)",
-            }}
-          >
-            <X className="h-6 w-6" />
-          </motion.button>
-        </div>
+              }}
+            >
+              0
+            </motion.button>
+            <motion.button
+              onClick={handleBackspace}
+              className="h-16 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
+              whileTap={{
+                scale: 0.95,
+                backgroundColor: "rgba(156, 163, 175, 0.1)",
+              }}
+            >
+              <X className="h-6 w-6" />
+            </motion.button>
+          </div>
 
-        <div className="mt-auto mb-4">
-          <motion.button
-            onClick={handleCheckin}
-            className={`w-full py-5 rounded-full text-white font-bold text-xl transition-colors relative overflow-hidden`}
-            style={{
-              backgroundColor:
-                phoneNumber.length >= 10 ? "#f05122" : "rgba(240, 81, 34, 0.6)",
-               color: "#fff" 
-            }}
-            whileHover={phoneNumber.length >= 10 ? { scale: 1.02 } : {}}
-            whileTap={phoneNumber.length >= 10 ? { scale: 0.98 } : {}}
-          >
-            {phoneNumber.length < 10 && (
-              <span className="absolute inset-0 flex items-center justify-center">
-                {10 - phoneNumber.length} more digits needed
+          <div className="mt-auto mb-4">
+            <motion.button
+              onClick={handleCheckin}
+              className={`w-full py-5 rounded-full text-white font-bold text-xl transition-colors relative overflow-hidden`}
+              style={{
+                backgroundColor:
+                  phoneNumber.length >= 10
+                    ? "#f05122"
+                    : "rgba(240, 81, 34, 0.6)",
+                color: "#fff",
+              }}
+              whileHover={phoneNumber.length >= 10 ? { scale: 1.02 } : {}}
+              whileTap={phoneNumber.length >= 10 ? { scale: 0.98 } : {}}
+            >
+              {phoneNumber.length < 10 && (
+                <span className="absolute inset-0 flex items-center justify-center">
+                  {10 - phoneNumber.length} more digits needed
+                </span>
+              )}
+              <span className={phoneNumber.length < 10 ? "opacity-0" : ""}>
+                CHECK-IN
               </span>
-            )}
-            <span className={phoneNumber.length < 10 ? "opacity-0" : ""}>
-              CHECK-IN
-            </span>
-          </motion.button>
-        </div>
+            </motion.button>
+          </div>
+        </div>{" "}
       </div>
     </div>
   );
