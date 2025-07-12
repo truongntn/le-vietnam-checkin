@@ -2,14 +2,13 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import axios from 'axios';
+import axios from "axios";
 
 interface WelcomeScreenProps {
   onTap: () => void;
 }
 
 export default function WelcomeScreen({ onTap }: WelcomeScreenProps) {
-  
   return (
     <motion.div
       className="relative w-full h-full overflow-hidden cursor-pointer"
@@ -19,14 +18,23 @@ export default function WelcomeScreen({ onTap }: WelcomeScreenProps) {
       {/* Background layers */}
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "#ffda44" }}
+        style={{ backgroundColor: "#070923" }}
       ></div>
 
       {/* Centered smaller background circles */}
       <div className="absolute inset-0 flex items-center justify-center">
         <motion.div
           className="absolute w-[500px] h-[500px] rounded-full"
-          style={{ backgroundColor: "#ffb347" }}
+          style={{
+            backgroundColor: "#0a1020",
+            border: "3px solid #31DCFF",
+            boxShadow: `
+              0 0 30px rgba(49, 220, 255, 0.8),
+              0 0 60px rgba(49, 220, 255, 0.6),
+              0 0 90px rgba(49, 220, 255, 0.4),
+              inset 0 0 30px rgba(49, 220, 255, 0.2)
+            `
+          }}
           animate={{
             scale: [1, 1.05, 1],
             rotate: [0, 1, 0],
@@ -40,7 +48,16 @@ export default function WelcomeScreen({ onTap }: WelcomeScreenProps) {
 
         <motion.div
           className="absolute w-[400px] h-[400px] rounded-full"
-          style={{ backgroundColor: "#f05122" }}
+          style={{
+            backgroundColor: "#0a1020",
+            border: "3px solid #F88BFE",
+            boxShadow: `
+              0 0 30px rgba(248, 139, 254, 0.8),
+              0 0 60px rgba(248, 139, 254, 0.6),
+              0 0 90px rgba(248, 139, 254, 0.4),
+              inset 0 0 30px rgba(248, 139, 254, 0.2)
+            `
+          }}
           animate={{
             scale: [1, 1.03, 1],
             rotate: [0, -1, 0],
@@ -55,7 +72,16 @@ export default function WelcomeScreen({ onTap }: WelcomeScreenProps) {
 
         <motion.div
           className="absolute w-[300px] h-[300px] rounded-full"
-          style={{ backgroundColor: "#e63946" }}
+          style={{
+            backgroundColor: "#0a1020",
+            border: "3px solid #A2C0FE",
+            boxShadow: `
+              0 0 30px rgba(162, 192, 254, 0.8),
+              0 0 60px rgba(162, 192, 254, 0.6),
+              0 0 90px rgba(162, 192, 254, 0.4),
+              inset 0 0 30px rgba(162, 192, 254, 0.2)
+            `
+          }}
           animate={{
             scale: [1, 1.02, 1],
             rotate: [0, 0.5, 0],
@@ -70,7 +96,16 @@ export default function WelcomeScreen({ onTap }: WelcomeScreenProps) {
 
         <motion.div
           className="absolute w-[200px] h-[200px] rounded-full"
-          style={{ backgroundColor: "#000000" }}
+          style={{
+            backgroundColor: "#0a1020",
+            border: "3px solid #00e6ff",
+            boxShadow: `
+              0 0 30px rgba(0, 230, 255, 0.8),
+              0 0 60px rgba(0, 230, 255, 0.6),
+              0 0 90px rgba(0, 230, 255, 0.4),
+              inset 0 0 30px rgba(0, 230, 255, 0.2)
+            `
+          }}
           animate={{
             scale: [1, 1.01, 1],
             rotate: [0, -0.5, 0],
