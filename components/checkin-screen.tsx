@@ -18,7 +18,7 @@ export default function CheckinScreen({
   setPhoneNumber,
   onCheckin,
   customerName,
-  setCustomerName
+  setCustomerName,
 }: CheckinScreenProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAgreed, setIsAgreed] = useState(true); // Pre-checked for better UX
@@ -93,7 +93,7 @@ export default function CheckinScreen({
       {/* Left Side - Promotional Content */}
       <div
         className="w-full md:w-1/2 p-6 flex flex-col h-full"
-        style={{ backgroundColor: "#f05122" }}
+        style={{ backgroundColor: "#070923" }}
       >
         {/* Rearranged layout - Promotional carousel moved higher */}
         <div className="mb-4 text-center">
@@ -106,10 +106,15 @@ export default function CheckinScreen({
               priority
             />
           </div>
-          <h2 className="text-white text-2xl font-bold mb-1">
+          <h2
+            className="text-white text-2xl font-bold mb-1"
+            style={{ color: "#F3B5FD" }}
+          >
             Check-In System
           </h2>
-          <p className="text-white text-sm">0433 605 645</p>
+          <p className="text-white text-sm" style={{ color: "#F3B5FD" }}>
+            0433 605 645
+          </p>
         </div>
 
         {/* Promotional carousel - increased height */}
@@ -266,7 +271,7 @@ export default function CheckinScreen({
               checked={isAgreed}
               onChange={() => setIsAgreed(!isAgreed)}
             />
-            <span>
+            <span style={{ color: "#F3B5FD" }}>
               By entering my phone number and name, I agree to receive{" "}
               <strong>Le Vietnam</strong> notifications via auto text!
               Unsubscribe anytime and still participate in{" "}
@@ -277,7 +282,10 @@ export default function CheckinScreen({
       </div>
 
       {/* Right Side - Phone Entry */}
-      <div className="w-full md:w-1/2 bg-white p-6 flex flex-col  h-full">
+      <div
+        className="w-full md:w-1/2 bg-white p-6 flex flex-col  h-full"
+        style={{ backgroundColor: "#070923" }}
+      >
         {/*<div className="flex justify-end mb-4">
           <div className="flex items-center">
             <div
@@ -299,44 +307,145 @@ export default function CheckinScreen({
         </div>*/}
 
         <div className="text-center mb-4">
-          <h2 className="text-2xl font-bold text-gray-800 mb-1">
+          <h2
+            className="text-2xl font-bold text-gray-800 mb-1"
+            style={{ color: "#F3B5FD" }}
+          >
             PLEASE ENTER PHONE NUMBER AND NAME
           </h2>
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-600 text-sm" style={{ color: "#F3B5FD" }}>
             Your info will not be shared with any third party
           </p>
         </div>
 
         <div className="mb-8">
-          <div className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800">
+          <div className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800" style={{ color: "#fff" }}>
             {formatPhoneNumber(phoneNumber) || "Enter your number"}
           </div>
         </div>
         <div className="mb-8">
-          <div className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800">
-          <input
+          <div className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800"style={{ color: "#F3B5FD" }}>
+            <input
               type="text"
-             // value={customerName}
+              // value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
               placeholder="Enter your name"
               className="w-full text-center text-black focus:outline-none"
+              style={{ backgroundColor: "#070923", color: "#fff" }}
               //onClick={() => setActiveInput("name")}
             />
           </div>
         </div>
         <div className="grid grid-cols-3 gap-4 mb-8">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num, index) => (
             <motion.button
               key={num}
               onClick={() => handleNumberClick(num.toString())}
               className="h-16 rounded-full border flex items-center justify-center text-2xl font-medium transition-colors"
               style={{
-                borderColor: "#f05122",
-                color: "#f05122",
+                borderColor: `linear-gradient(45deg, #31DCFF, #F88BFE, #A2C0FE)`,
+                color: "#31DCFF",
+                boxShadow: `
+          0 0 10px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.3)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.3)"
+              : "rgba(162, 192, 254, 0.3)"
+          },
+          0 0 20px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.2)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.2)"
+              : "rgba(162, 192, 254, 0.2)"
+          },
+          0 0 30px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.1)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.1)"
+              : "rgba(162, 192, 254, 0.1)"
+          },
+          inset 0 0 10px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.1)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.1)"
+              : "rgba(162, 192, 254, 0.1)"
+          }
+        `,
+              }}
+              whileHover={{
+                boxShadow: `
+          0 0 15px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.5)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.5)"
+              : "rgba(162, 192, 254, 0.5)"
+          },
+          0 0 30px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.3)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.3)"
+              : "rgba(162, 192, 254, 0.3)"
+          },
+          0 0 45px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.2)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.2)"
+              : "rgba(162, 192, 254, 0.2)"
+          },
+          inset 0 0 15px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.2)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.2)"
+              : "rgba(162, 192, 254, 0.2)"
+          }
+        `,
               }}
               whileTap={{
                 scale: 0.95,
-                backgroundColor: "rgba(240, 81, 34, 0.1)",
+                backgroundColor:
+                  index % 3 === 0
+                    ? "rgba(49, 220, 255, 0.1)"
+                    : index % 3 === 1
+                    ? "rgba(248, 139, 254, 0.1)"
+                    : "rgba(162, 192, 254, 0.1)",
+                boxShadow: `
+          0 0 20px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.7)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.7)"
+              : "rgba(162, 192, 254, 0.7)"
+          },
+          0 0 40px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.4)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.4)"
+              : "rgba(162, 192, 254, 0.4)"
+          },
+          0 0 60px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.3)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.3)"
+              : "rgba(162, 192, 254, 0.3)"
+          },
+          inset 0 0 20px ${
+            index % 3 === 0
+              ? "rgba(49, 220, 255, 0.3)"
+              : index % 3 === 1
+              ? "rgba(248, 139, 254, 0.3)"
+              : "rgba(162, 192, 254, 0.3)"
+          }
+        `,
               }}
             >
               {num}
@@ -356,13 +465,33 @@ export default function CheckinScreen({
             onClick={() => handleNumberClick("0")}
             className="h-16 rounded-full border flex items-center justify-center text-2xl font-medium transition-colors"
             style={{
-              borderColor: "#f05122",
-              color: "#f05122",
-            }}
-            whileTap={{
-              scale: 0.95,
-              backgroundColor: "rgba(240, 81, 34, 0.1)",
-            }}
+        borderColor: "#F88BFE",
+        padding: "2px",
+        color: "#31DCFF",
+        boxShadow: `
+          0 0 10px rgba(248, 139, 254, 0.3),
+          0 0 20px rgba(248, 139, 254, 0.2),
+          0 0 30px rgba(248, 139, 254, 0.1),
+          inset 0 0 10px rgba(248, 139, 254, 0.1)
+        `,
+      }}
+      whileHover={{
+        boxShadow: `
+          0 0 15px rgba(49, 220, 255, 0.5),
+          0 0 30px rgba(248, 139, 254, 0.3),
+          0 0 45px rgba(162, 192, 254, 0.2),
+          inset 0 0 15px rgba(49, 220, 255, 0.2)
+        `,
+      }}
+      whileTap={{
+        scale: 0.95,
+        boxShadow: `
+          0 0 20px rgba(49, 220, 255, 0.7),
+          0 0 40px rgba(248, 139, 254, 0.4),
+          0 0 60px rgba(162, 192, 254, 0.3),
+          inset 0 0 20px rgba(49, 220, 255, 0.3)
+        `,
+      }}
           >
             0
           </motion.button>
@@ -385,6 +514,7 @@ export default function CheckinScreen({
             style={{
               backgroundColor:
                 phoneNumber.length >= 10 ? "#f05122" : "rgba(240, 81, 34, 0.6)",
+               color: "#fff" 
             }}
             whileHover={phoneNumber.length >= 10 ? { scale: 1.02 } : {}}
             whileTap={phoneNumber.length >= 10 ? { scale: 0.98 } : {}}
