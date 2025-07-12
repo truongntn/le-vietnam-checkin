@@ -11,6 +11,7 @@ interface CheckinScreenProps {
   onCheckin: () => void;
   customerName: string;
   setCustomerName: (value: string) => void;
+  checkinError?: string;
 }
 
 export default function CheckinScreen({
@@ -19,6 +20,7 @@ export default function CheckinScreen({
   onCheckin,
   customerName,
   setCustomerName,
+  checkinError,
 }: CheckinScreenProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAgreed, setIsAgreed] = useState(true); // Pre-checked for better UX
@@ -318,7 +320,7 @@ export default function CheckinScreen({
               className="text-2xl font-bold text-gray-800 mb-1"
               style={{ color: "#F3B5FD" }}
             >
-              PLEASE ENTER PHONE NUMBER AND NAME
+              PLEASE ENTER YOUR<br></br>PHONE NUMBER
             </h2>
             <p className="text-gray-600 text-sm" style={{ color: "#F3B5FD" }}>
               Your info will not be shared with any third party
@@ -330,10 +332,17 @@ export default function CheckinScreen({
               className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800"
               style={{ color: "#fff" }}
             >
-              {formatPhoneNumber(phoneNumber) || "Enter your number"}
+              {formatPhoneNumber(phoneNumber) || "xxx-xxx-xxxx"}
             </div>
+            {checkinError && (
+              <div className="mt-2 text-center">
+                <p style={{ color: "#ff6b6b", fontSize: "14px" }}>
+                  {checkinError}
+                </p>
+              </div>
+            )}
           </div>
-          <div className="mb-8">
+          {/*<div className="mb-8">
             <div
               className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800"
               style={{ color: "#F3B5FD" }}
@@ -348,7 +357,7 @@ export default function CheckinScreen({
                 //onClick={() => setActiveInput("name")}
               />
             </div>
-          </div>
+          </div>*/}
           <div className="grid grid-cols-3 gap-4 mb-8">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num, index) => (
               <motion.button
