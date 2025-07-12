@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Confetti from "./confetti"
+import Image from "next/image";
 
 interface SuccessScreenProps {
   points: number,
@@ -156,7 +157,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.5 }}
             >
-              {customerName}, your number of visits:
+              {customerName}, your order is ready!
             </motion.p>
           )}
         </AnimatePresence>
@@ -206,31 +207,26 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
                   }}
                 />
 
-                <motion.div
-                  className="absolute -bottom-2 left-1/2 transform -translate-x-1/2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
-                    <path d="M0 0 L20 20 L40 0 Z" fill="#f05122" />
-                  </svg>
-                </motion.div>
-
-                <motion.span
-                  className="relative text-6xl font-bold"
-                  style={{ color: "#f05122" }}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{
-                    delay: 0.3,
-                    duration: 0.5,
-                    times: [0, 0.5, 1],
-                    repeat: 1,
+<motion.div
+                  className="absolute inset-0 rounded-full"
+                  style={{ backgroundColor: "#ffb347" }}
+                  animate={{
+                    scale: [1, 1.1, 1],
                   }}
-                >
-                  {points}
-                </motion.span>
+                  transition={{
+                    duration: 2,
+                    repeat: Number.POSITIVE_INFINITY,
+                    repeatType: "reverse",
+                  }}
+                />
+                <Image
+                  src={"/images/check.png"}
+                  alt={"Order Confirmed"}
+                
+                  width={70}
+                  height={70}
+                  style={{ zIndex: 99999999999 }}
+                />
               </motion.div>
 
               {/* Animated stars around points */}

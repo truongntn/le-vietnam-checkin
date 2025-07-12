@@ -15,6 +15,7 @@ export default function KioskApp() {
   const [points, setPoints] = useState(0)
   const [customerName, setCustomerName] = useState("")
   const [customerPhone, setCustomePhone] = useState("")
+  const [checkinError, setCheckinError] = useState("")
 
   const handleWelcomeClick = () => {
     setCurrentScreen("checkin")
@@ -22,32 +23,65 @@ export default function KioskApp() {
 
   const handleCheckin = async () => {
     console.log("Check-in initiated with phone number:", phoneNumber)
+    setCheckinError("")
 
-    // Always proceed to success screen if this function is called
-    // The validation is now handled in the CheckinScreen component
     try {
       const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:5000/";
-      const res = await axios.post(BACKEND_URL + 'api/checkin/checkin', { phone: phoneNumber, name: customerName, status: "waiting" });
+      
+      // Check for pending orders and perform check-in using the same endpoint
+      const res = await axios.post(BACKEND_URL + 'api/checkin/checkin', { 
+        phone: phoneNumber
+      });
+      
       console.log(res.data);
-      setPoints(res.data.rewardPoints);
-      setCustomerName(res.data.customerName);
-      setCustomePhone(res.data.customerPhone);
+      
+      if (res.data.pendingOrder) {
+        // If there's a pending order, proceed to success
+        setPoints(res.data.rewardPoints || 0);
+        setCustomerName(res.data.pendingOrder.name);
+        setCustomePhone(res.data.pendingOrder.phone);
+        setCurrentScreen("success")
+        
+        // Reset to welcome screen after 8 seconds
+        setTimeout(() => {
+          setCurrentScreen("welcome")
+          setPhoneNumber("")
+          setCustomerName("")
+          setCheckinError("")
+        }, 8000)
+      } else {
+        // No pending order found
+        setCheckinError("You have no order");
+      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        console.log(err.response?.data?.message || 'Failed to check in');
+        const errorMessage = err.response?.data?.message || 'Failed to check in';
+        console.log(errorMessage);
+        
+        if (errorMessage === "You have a waiting order.") {
+          // If there's a pending order, allow check-in and proceed to success
+          const pendingOrder = err.response?.data?.pendingOrder;
+          setPoints(0); // You might want to get actual points from the pending order
+          setCustomerName(pendingOrder?.name || customerName);
+          setCustomePhone(pendingOrder?.phone || phoneNumber);
+          setCurrentScreen("success")
+          
+          // Reset to welcome screen after 8 seconds
+          setTimeout(() => {
+            setCurrentScreen("welcome")
+            setPhoneNumber("")
+            setCustomerName("")
+            setCheckinError("")
+          }, 8000)
+        } else {
+          // Show error message and stay on checkin screen
+          setCheckinError("You have no order");
+        }
       } else {
         console.log('An unexpected error occurred');
+        setCheckinError("An unexpected error occurred");
       }
     }
-    setCurrentScreen("success")
-    //const res = await axios.get(process.env.BACKEND_URL + 'api/checkin/', {  });
-    //console.log(res.data);
-    // Reset to welcome screen after 8 seconds
-    setTimeout(() => {
-      setCurrentScreen("welcome")
-      setPhoneNumber("")
-      setCustomerName("")
-    }, 8000)
   }
   
   return (
@@ -75,7 +109,7 @@ export default function KioskApp() {
             transition={{ duration: 0.5 }}
             className="w-full h-full"
           >
-            <CheckinScreen phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} onCheckin={handleCheckin} customerName={customerName} setCustomerName={setCustomerName}/>
+            <CheckinScreen phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} onCheckin={handleCheckin} customerName={customerName} setCustomerName={setCustomerName} checkinError={checkinError} />
           </motion.div>
         )}
 
