@@ -51,10 +51,10 @@ export default function CheckinScreen({
     });
 
     return () => socketInstance.disconnect();
-  }, []);
+  }, [setPhoneNumber, phoneNumber]);
 
   const handleNumberClick = (num: string) => {
-    if (phoneNumber.length < 10) {
+    if (phoneNumber.length < 10 && /^\d$/.test(num)) {
       const newPhoneNumber = phoneNumber + num;
       setPhoneNumber(newPhoneNumber);
       if (newPhoneNumber.length <= 10) {
