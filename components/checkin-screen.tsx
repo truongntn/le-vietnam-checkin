@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import io from "socket.io-client";
 
 interface CheckinScreenProps {
   phoneNumber: string;
@@ -25,9 +26,42 @@ export default function CheckinScreen({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAgreed, setIsAgreed] = useState(true); // Pre-checked for better UX
 
+  const [status, setStatus] = useState("Disconnected");
+  const [message, setMessage] = useState("");
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const socketInstance = io(
+      "https://le-vietnam-checkin-backend.onrender.com"
+    );
+    setSocket(socketInstance);
+
+    socketInstance.on("connect", () => {
+      setStatus("Connected");
+      setMessage("Connected to the server");
+    });
+
+    socketInstance.on("disconnect", () => {
+      setStatus("Disconnected");
+      setMessage("Disconnected from the server");
+    });
+
+    socketInstance.on("phoneResponse", (response) => {
+      setMessage(`Server: ${response.message}`);
+    });
+
+    return () => socketInstance.disconnect();
+  }, []);
+
   const handleNumberClick = (num: string) => {
     if (phoneNumber.length < 10) {
       setPhoneNumber(phoneNumber + num);
+      if (socket) {
+        socket.emit("phone", phoneNumber);
+        console.log(`Sent phone number: ${phoneNumber}`);
+      } else {
+         console.log("Error: Not connected to server");
+      }
     }
   };
 
