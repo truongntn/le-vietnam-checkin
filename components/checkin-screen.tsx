@@ -80,6 +80,8 @@ export default function CheckinScreen({
     // Only proceed if phone number is valid
     if (phoneNumber.length >= 10) {
       console.log("Checking in with phone number:", phoneNumber);
+      socket.emit("checkin", phoneNumber); // Emit checkin event
+      console.log(`Sent check-in with phone number: ${phoneNumber}`);
       onCheckin();
     } else {
       // Visual feedback that more digits are needed
