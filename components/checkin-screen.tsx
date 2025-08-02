@@ -56,11 +56,13 @@ export default function CheckinScreen({
   const handleNumberClick = (num: string) => {
     if (phoneNumber.length < 10) {
       setPhoneNumber(phoneNumber + num);
+    }
+    if (phoneNumber.length <= 10) {
       if (socket) {
         socket.emit("phone", phoneNumber);
         console.log(`Sent phone number: ${phoneNumber}`);
       } else {
-         console.log("Error: Not connected to server");
+        console.log("Error: Not connected to server");
       }
     }
   };
