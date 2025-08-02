@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import io from "socket.io-client";
-import debounce from "lodash/debounce";
 
 interface CheckinScreenProps {
   phoneNumber: string;
@@ -30,7 +29,6 @@ export default function CheckinScreen({
   const [status, setStatus] = useState("Disconnected");
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
-  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     const socketInstance = io(
@@ -55,35 +53,7 @@ export default function CheckinScreen({
     return () => socketInstance.disconnect();
   }, [setPhoneNumber, phoneNumber]);
 
-  const debouncedEmitPhone = useCallback(
-    debounce((newPhoneNumber: string, socket: Socket | null) => {
-      if (socket && newPhoneNumber) {
-        socket.emit("phone", newPhoneNumber);
-        console.log("Sent phone event with:", newPhoneNumber, "at", new Date().toISOString());
-      } else if (!socket) {
-        console.log("Error: Not connected to server at", new Date().toISOString());
-      }
-      setIsTyping(false);
-    }, 100),
-    []
-  );
-
-  const handleNumberClick = useCallback(
-    (num: string) => {
-      if (phoneNumber.length < 10 && /^\d$/.test(num)) {
-        setIsTyping(true);
-        setPhoneNumber((prev) => {
-          const newPhoneNumber = prev + num;
-          console.log("Number clicked, current phone:", newPhoneNumber, "at", new Date().toISOString());
-          debouncedEmitPhone(newPhoneNumber, socket);
-          return newPhoneNumber;
-        });
-      }
-    },
-    [phoneNumber, socket, debouncedEmitPhone]
-  );
-
-  /*const handleNumberClick = (num: string) => {
+  const handleNumberClick = (num: string) => {
     if (phoneNumber.length < 10 && /^\d$/.test(num)) {
       const newPhoneNumber = phoneNumber + num;
       setPhoneNumber(newPhoneNumber);
@@ -96,7 +66,7 @@ export default function CheckinScreen({
         }
       }
     }
-  };*/
+  };
 
   const handleClear = () => {
     setPhoneNumber("");
