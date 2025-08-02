@@ -59,8 +59,8 @@ export default function CheckinScreen({
       setPhoneNumber(newPhoneNumber);
       if (newPhoneNumber.length <= 10) {
         if (socket) {
-          socket.emit("phone", newPhoneNumber);
-          console.log(`Sent phone number: ${phoneNumber}`);
+          socket.emit("phone", newPhoneNumber );
+          console.log(`Sent phone number: ${newPhoneNumber}`);
         } else {
           console.log("Error: Not connected to server");
         }
