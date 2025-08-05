@@ -48,7 +48,7 @@ export default function KioskApp() {
           setPhoneNumber("")
           setCustomerName("")
           setCheckinError("")
-        }, 8000)
+        }, 80000)
       } else {
         // No pending order found
         setCheckinError("Incorrect password");

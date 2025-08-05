@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Confetti from "./confetti"
-import Image from "next/image";
+import Image from "next/image"
 
 interface SuccessScreenProps {
-  points: number,
-  customerName: string,
-  customerPhone: string,
+  points: number
+  customerName: string
+  customerPhone: string
 }
 
 export default function SuccessScreen({ points, customerName, customerPhone }: SuccessScreenProps) {
@@ -94,7 +94,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden matrix-container"
-      style={{ backgroundColor: "#070923" }}
+      style={{ backgroundColor: "#000" }}
     >
       <Confetti />
 
@@ -175,23 +175,8 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
                 damping: 10,
               }}
             >
-              {/*<motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2, duration: 0.3 }}>
-              Please
-              </motion.span>{" "}
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.3 }}>
-              be
-              </motion.span>{" "}
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.3 }}>
-              patient.
-              </motion.span>{" "}
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 0.3 }}>
-              We will bring out your food
-              </motion.span>{" "}
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0, duration: 0.3 }}>
-              shortly!
-              </motion.span>*/}
-               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0, duration: 0.3 }}>
-              Loading….  
+                Loading….  
               </motion.span>
             </motion.h1>
           )}
@@ -260,7 +245,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
                   }}
                 />
 
-<motion.div
+                <motion.div
                   className="absolute inset-0 rounded-full"
                   style={{ backgroundColor: "#ffb347" }}
                   animate={{
@@ -275,7 +260,6 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
                 <Image
                   src={"/images/check.png"}
                   alt={"Order Confirmed"}
-                
                   width={70}
                   height={70}
                   style={{ zIndex: 99999999999 }}
