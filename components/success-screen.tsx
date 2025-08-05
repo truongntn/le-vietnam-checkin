@@ -98,59 +98,6 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
     >
       <Confetti />
 
-      {/* Background animated elements */}
-      {showFinalElements && (
-        <>
-          {floatingElements.map((el, index) => (
-            <motion.div
-              key={`float-${index}`}
-              className="absolute rounded-full"
-              style={{
-                left: `${el.x}%`,
-                top: `${el.y}%`,
-                width: `${el.size}px`,
-                height: `${el.size}px`,
-                backgroundColor: index % 2 === 0 ? "#f05122" : "#ffb347",
-                opacity: 0.3,
-              }}
-              animate={{
-                y: [`${el.y}%`, `${el.y - 10}%`, `${el.y}%`],
-                scale: [1, 1.2, 1],
-                opacity: [0.2, 0.4, 0.2],
-              }}
-              transition={{
-                duration: el.duration,
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-                delay: el.delay,
-              }}
-            />
-          ))}
-        </>
-      )}
-
-      {/* Radial pulse animation */}
-      <AnimatePresence>
-        {showPoints && (
-          <motion.div
-            className="absolute"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: [0, 0.5, 0], scale: [0, 2, 3] }}
-            exit={{ opacity: 0, scale: 0 }}
-            transition={{
-              duration: 2,
-              repeat: Number.POSITIVE_INFINITY,
-              repeatDelay: 1,
-            }}
-          >
-            <div
-              className="w-64 h-64 rounded-full"
-              style={{ background: "radial-gradient(circle, #f05122 0%, rgba(240, 81, 34, 0) 70%)" }}
-            ></div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Main content */}
       <motion.div
         className="text-left z-10 max-w-lg px-4"
@@ -180,73 +127,6 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
                 Loading….
               </motion.span>
             </motion.h1>
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {showText && (
-            <motion.p
-              className="text-xl mb-6"
-              style={{
-                color: "#31DCFF",
-                textShadow: "0 0 8px #31DCFF, 0 0 16px #31DCFF, 0 0 32px #31DCFF",
-                fontWeight: 700
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.5 }}
-            >
-              {customerName}, your order is ready!
-            </motion.p>
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {showPoints && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-              <motion.div
-                className="relative mx-auto w-32 h-32 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: "#ffda44" }}
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                {/* Animated ring around points */}
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  style={{
-                    border: "2px dashed #f05122",
-                    width: "calc(100% + 16px)",
-                    height: "calc(100% + 16px)",
-                    top: "-8px",
-                    left: "-8px",
-                  }}
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 20,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "linear",
-                  }}
-                />
-
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  style={{ backgroundColor: "#ffb347" }}
-                  animate={{
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "reverse",
-                  }}
-                />
-              </motion.div>
-            </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
