@@ -96,6 +96,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
     <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden matrix-container"
       style={{ backgroundColor: "#000" }}
     >
+      <Confetti />
 
       {/* Main content */}
       <motion.div
@@ -111,7 +112,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              height: "100vh" // Ensure vertical centering
+              minHeight: "50vh" // Adjusted to center vertically on screen
             }}
           >
             <motion.span
