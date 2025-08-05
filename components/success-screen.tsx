@@ -96,41 +96,57 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
     <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden matrix-container"
       style={{ backgroundColor: "#000" }}
     >
+      <Confetti />
 
       {/* Main content */}
-     
+      <motion.div
+        className="text-center z-10 max-w-lg px-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <AnimatePresence>
-          <motion.span
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.3 }}
+          <motion.div
             style={{
-              color: "#0F0",
-              textShadow: "0 0 5px #0F0, 0 0 10px #0F0, 0 0 15px #0F0",
-              fontFamily: "monospace",
-              fontWeight: 700,
-              display: "block",
-              fontSize: "2rem" // Increased text size
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100vh" // Ensure vertical centering
             }}
           >
-            Matrix has you...
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.0, duration: 0.3 }}
-            style={{
-              color: "#0F0",
-              textShadow: "0 0 5px #0F0, 0 0 10px #0F0, 0 0 15px #0F0",
-              fontFamily: "monospace",
-              fontWeight: 900,
-              fontSize: "4rem" // Increased text size
-            }}
-          >
-            Loading….
-          </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.3 }}
+              style={{
+                color: "#0F0",
+                textShadow: "0 0 5px #0F0, 0 0 10px #0F0, 0 0 15px #0F0",
+                fontFamily: "monospace",
+                fontWeight: 700,
+                display: "block",
+                fontSize: "2rem"
+              }}
+            >
+              Matrix has you...
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.0, duration: 0.3 }}
+              style={{
+                color: "#0F0",
+                textShadow: "0 0 5px #0F0, 0 0 10px #0F0, 0 0 15px #0F0",
+                fontFamily: "monospace",
+                fontWeight: 900,
+                fontSize: "4rem"
+              }}
+            >
+              Loading….
+            </motion.span>
+          </motion.div>
         </AnimatePresence>
-      
+      </motion.div>
     </div>
   )
 }
