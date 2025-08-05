@@ -127,7 +127,7 @@ export default function SuccessScreen({
             textShadow: "0 0 5px #0F0, 0 0 10px #0F0, 0 0 15px #0F0",
             fontFamily: "monospace",
             fontWeight: 900,
-            fontSize: "4rem",
+            fontSize: "2rem",
           }}
         >
           Loading….
