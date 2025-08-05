@@ -100,7 +100,6 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
 
       {/* Main content */}
      
-        <AnimatePresence>
           <motion.span
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -130,7 +129,6 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
           >
             Loading….
           </motion.span>
-        </AnimatePresence>
       
     </div>
   )
