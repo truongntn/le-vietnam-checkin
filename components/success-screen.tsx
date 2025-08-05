@@ -96,10 +96,10 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
     <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden matrix-container"
       style={{ backgroundColor: "#000" }}
     >
-      <Confetti />
 
       {/* Main content */}
      
+        <AnimatePresence>
           <motion.span
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,6 +129,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
           >
             Loading….
           </motion.span>
+        </AnimatePresence>
       
     </div>
   )
