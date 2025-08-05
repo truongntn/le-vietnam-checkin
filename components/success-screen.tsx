@@ -93,7 +93,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
   }, [])
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden matrix-container"
+    <div className="relative w-full h-full flex flex-col items-start justify-start overflow-hidden matrix-container"
       style={{ backgroundColor: "#000" }}
     >
       <Confetti />
@@ -153,7 +153,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
 
       {/* Main content */}
       <motion.div
-        className="text-center z-10 max-w-lg px-4"
+        className="text-left z-10 max-w-lg px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -163,8 +163,9 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
             <motion.h1
               className="text-4xl md:text-2xl font-bold mb-6"
               style={{
-                color: "#31DCFF",
-                textShadow: "0 0 8px #31DCFF, 0 0 16px #31DCFF, 0 0 32px #31DCFF",
+                color: "#0F0",
+                textShadow: "0 0 5px #0F0, 0 0 10px #0F0, 0 0 15px #0F0",
+                fontFamily: "monospace",
                 fontWeight: 900
               }}
               initial={{ opacity: 0, y: 50 }}
@@ -176,7 +177,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
               }}
             >
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0, duration: 0.3 }}>
-                Loading….  
+                Loading….
               </motion.span>
             </motion.h1>
           )}
@@ -244,65 +245,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
                     repeatType: "reverse",
                   }}
                 />
-
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  style={{ backgroundColor: "#ffb347" }}
-                  animate={{
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "reverse",
-                  }}
-                />
-                <Image
-                  src={"/images/check.png"}
-                  alt={"Order Confirmed"}
-                  width={70}
-                  height={70}
-                  style={{ zIndex: 99999999999 }}
-                />
               </motion.div>
-
-              {/* Animated stars around points */}
-              {showFinalElements && (
-                <>
-                  {[0, 1, 2, 3, 4, 5].map((i) => {
-                    const angle = (i * 60 * Math.PI) / 180
-                    const x = Math.cos(angle) * 100
-                    const y = Math.sin(angle) * 100
-                    return (
-                      <motion.div
-                        key={`star-${i}`}
-                        className="absolute"
-                        style={{
-                          left: "calc(50% + 0px)",
-                          top: "calc(50% + 0px)",
-                          zIndex: 5,
-                        }}
-                        animate={{
-                          x: [0, x, 0],
-                          y: [0, y, 0],
-                          opacity: [0, 1, 0],
-                          scale: [0.5, 1, 0.5],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Number.POSITIVE_INFINITY,
-                          repeatType: "reverse",
-                          delay: i * 0.3,
-                        }}
-                      >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#f05122">
-                          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                        </svg>
-                      </motion.div>
-                    )
-                  })}
-                </>
-              )}
             </motion.div>
           )}
         </AnimatePresence>
