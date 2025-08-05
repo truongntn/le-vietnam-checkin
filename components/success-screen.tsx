@@ -96,12 +96,11 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
     <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden matrix-container"
       style={{ backgroundColor: "#000" }}
     >
-      <Confetti />
 
       {/* Main content */}
       <motion.div
         className="text-center z-10 max-w-lg px-4"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
