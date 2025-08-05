@@ -99,12 +99,7 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
       <Confetti />
 
       {/* Main content */}
-      <motion.div
-        className="text-center z-10 max-w-lg px-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+     
         <AnimatePresence>
           <motion.span
             initial={{ opacity: 0, y: -20 }}
@@ -115,7 +110,8 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
               textShadow: "0 0 5px #0F0, 0 0 10px #0F0, 0 0 15px #0F0",
               fontFamily: "monospace",
               fontWeight: 700,
-              display: "block"
+              display: "block",
+              fontSize: "2rem" // Increased text size
             }}
           >
             Matrix has you...
@@ -128,13 +124,14 @@ export default function SuccessScreen({ points, customerName, customerPhone }: S
               color: "#0F0",
               textShadow: "0 0 5px #0F0, 0 0 10px #0F0, 0 0 15px #0F0",
               fontFamily: "monospace",
-              fontWeight: 900
+              fontWeight: 900,
+              fontSize: "4rem" // Increased text size
             }}
           >
             Loading….
           </motion.span>
         </AnimatePresence>
-      </motion.div>
+      
     </div>
   )
 }
