@@ -59,7 +59,7 @@ export default function CheckinScreen({
       setPhoneNumber(newPhoneNumber);
       if (newPhoneNumber.length <= 10) {
         if (socket) {
-          socket.emit("phone", newPhoneNumber );
+          socket.emit("phone", newPhoneNumber);
           console.log(`Sent phone number: ${newPhoneNumber}`);
         } else {
           console.log("Error: Not connected to server");
@@ -357,7 +357,15 @@ export default function CheckinScreen({
           <div className="text-center mb-4">
             <h2
               className="text-2xl font-bold text-gray-800 mb-1"
-              style={{ color: "#F3B5FD" }}
+              style={{
+                color: "#F3B5FD",
+                textShadow:
+                  "0 0 5px #F3B5FD, 0 0 10px #F3B5FD, 0 0 15px #F3B5FD",
+                fontFamily: "monospace",
+                fontWeight: 700,
+                display: "block",
+                fontSize: "2rem",
+              }}
             >
               PLEASE ENTER YOUR<br></br>PASSWORD
             </h2>
