@@ -10,7 +10,7 @@ import axios from 'axios';
 type Screen = "welcome" | "checkin" | "success"
 
 export default function KioskApp() {
-  const [currentScreen, setCurrentScreen] = useState<Screen>("welcome")
+  const [currentScreen, setCurrentScreen] = useState<Screen>("checkin")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [points, setPoints] = useState(0)
   const [customerName, setCustomerName] = useState("")
@@ -68,7 +68,7 @@ export default function KioskApp() {
           
           // Reset to welcome screen after 8 seconds
           setTimeout(() => {
-            setCurrentScreen("welcome")
+            setCurrentScreen("checkin")
             setPhoneNumber("")
             setCustomerName("")
             setCheckinError("")
