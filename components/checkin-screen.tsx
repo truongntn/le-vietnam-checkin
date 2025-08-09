@@ -29,6 +29,7 @@ export default function CheckinScreen({
   const [status, setStatus] = useState("Disconnected");
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
+  const timeoutRef = useRef(null); // Store timeout ID
 
   useEffect(() => {
     const socketInstance = io(
