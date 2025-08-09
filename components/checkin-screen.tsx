@@ -407,7 +407,7 @@ export default function CheckinScreen({
           </div>
 
           <div className="mb-8">
-            <Debounce
+          <Debounce
               func={emitPhoneUpdate}
               wait={300}
               options={{ leading: false, trailing: true }}
@@ -418,6 +418,15 @@ export default function CheckinScreen({
                   style={{ color: "#fff" }}
                 >
                   {formatPhoneNumber(phoneNumber) || "xxx-xxx-xxxx"}
+                  <input
+                    type="hidden"
+                    value={phoneNumber}
+                    onChange={(e) => {
+                      const newValue = e.target.value;
+                      setPhoneNumber(newValue);
+                      debouncedEmit(newValue);
+                    }}
+                  />
                 </div>
               )}
             </Debounce>
