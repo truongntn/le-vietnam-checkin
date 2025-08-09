@@ -71,10 +71,22 @@ export default function CheckinScreen({
   const handleClear = () => {
     setPhoneNumber("");
     setCustomerName("");
+    if (socket) {
+      socket.emit("phone", "");
+      console.log(`Cleasr phone number`);
+    } else {
+      console.log("Error: Not connected to server");
+    }
   };
 
   const handleBackspace = () => {
     setPhoneNumber(phoneNumber.slice(0, -1));
+    if (socket) {
+      socket.emit("phone", phoneNumber.slice(0, -1));
+      console.log(`Sent phone number: ${phoneNumber.slice(0, -1)}`);
+    } else {
+      console.log("Error: Not connected to server");
+    }
   };
 
   const handleCheckin = () => {
