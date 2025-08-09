@@ -34,7 +34,7 @@ export default function CheckinScreen({
   useEffect(() => {
     const socketInstance = io(
       "https://le-vietnam-checkin-backend.onrender.com",
-      { /*withCredentials: true,*/ transports: ['websocket'] }
+      { withCredentials: true, transports: ['websocket'] }
     );
     setSocket(socketInstance);
 
