@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import io from "socket.io-client";
-import { get, isEmpty, find, filter, has, debounce } from "loadash";
+import { debounce } from "lodash";
 
 interface CheckinScreenProps {
   phoneNumber: string;
