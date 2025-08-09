@@ -56,7 +56,7 @@ export default function CheckinScreen({
   }, [setPhoneNumber, phoneNumber]);
 
   // Debounce the emit function to avoid sending partial data
-  const debouncedEmit = debounce((value) => {
+  const debouncedEmit = debounce((value, socket) => {
     socket.emit('phone', value);
   }, 500);
 
@@ -66,7 +66,7 @@ export default function CheckinScreen({
       setPhoneNumber(newPhoneNumber);
       if (newPhoneNumber.length <= 10) {
         if (socket) {
-          debouncedEmit(newPhoneNumber);
+          debouncedEmit(newPhoneNumber, socket);
           //socket.emit("phone", newPhoneNumber);
           console.log(`Sent phone number: ${newPhoneNumber}`);
         } else {
