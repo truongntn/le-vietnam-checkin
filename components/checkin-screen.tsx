@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import io from "socket.io-client";
+import { get, isEmpty, find, filter, has, debounce } from "loadash";
 
 interface CheckinScreenProps {
   phoneNumber: string;
@@ -54,13 +55,19 @@ export default function CheckinScreen({
     return () => socketInstance.disconnect();
   }, [setPhoneNumber, phoneNumber]);
 
+  // Debounce the emit function to avoid sending partial data
+  const debouncedEmit = debounce((value) => {
+    socket.emit('phone', value);
+  }, 500);
+
   const handleNumberClick = (num: string) => {
     if (phoneNumber.length < 10 && /^\d$/.test(num)) {
       const newPhoneNumber = phoneNumber + num;
       setPhoneNumber(newPhoneNumber);
       if (newPhoneNumber.length <= 10) {
         if (socket) {
-          socket.emit("phone", newPhoneNumber);
+          debouncedEmit(newPhoneNumber);
+          //socket.emit("phone", newPhoneNumber);
           console.log(`Sent phone number: ${newPhoneNumber}`);
         } else {
           console.log("Error: Not connected to server");
