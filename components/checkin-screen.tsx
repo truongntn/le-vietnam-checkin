@@ -33,7 +33,7 @@ export default function CheckinScreen({
   useEffect(() => {
     const socketInstance = io(
       "https://le-vietnam-checkin-backend.onrender.com",
-      { /*withCredentials: true,*/ transports: ['websocket'] }
+      { /*withCredentials: true,*/ transports: ["websocket"] }
     );
     setSocket(socketInstance);
 
@@ -54,17 +54,34 @@ export default function CheckinScreen({
     return () => socketInstance.disconnect();
   }, [setPhoneNumber, phoneNumber]);
 
+  const emitPhoneUpdate = (value) => {
+    if (socket) {
+      socket.emit("phone", value);
+      console.log(`Sent phone number: ${value}`);
+    } else {
+      console.log("Error: Not connected to server");
+    }
+  };
+
   const handleNumberClick = (num: string) => {
     if (phoneNumber.length < 10 && /^\d$/.test(num)) {
       const newPhoneNumber = phoneNumber + num;
       setPhoneNumber(newPhoneNumber);
       if (newPhoneNumber.length <= 10) {
-        if (socket) {
-          socket.emit("phone", newPhoneNumber);
-          console.log(`Sent phone number: ${newPhoneNumber}`);
-        } else {
-          console.log("Error: Not connected to server");
+        // Clear any existing timeout
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
         }
+        // Set new timeout to emit phone number after 300ms
+        timeoutRef.current = setTimeout(() => {
+          emitPhoneUpdate(newPhoneNumber);
+        }, 300);
+        //if (socket) {
+        //socket.emit("phone", newPhoneNumber);
+        //console.log(`Sent phone number: ${newPhoneNumber}`);
+        //} else {
+        //console.log("Error: Not connected to server");
+        //}
       }
     }
   };
