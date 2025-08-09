@@ -52,8 +52,17 @@ export default function CheckinScreen({
       setMessage(`Server: ${response.message}`);
     });
 
-    return () => socketInstance.disconnect();
-  }, [setPhoneNumber, phoneNumber]);
+    return () => {
+      socketInstance.off("connect");
+      socketInstance.off("connect_error");
+      socketInstance.off("disconnect");
+      socketInstance.off("phoneResponse");
+      socketInstance.disconnect();
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current); // Clean up timeout
+      }
+    };
+  }, []);
 
   const emitPhoneUpdate = (value) => {
     if (socket) {
