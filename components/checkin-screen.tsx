@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import io from "socket.io-client";
-import { Debounce } from "react-lodash";
 
 interface CheckinScreenProps {
   phoneNumber: string;
@@ -34,13 +33,7 @@ export default function CheckinScreen({
   useEffect(() => {
     const socketInstance = io(
       "https://le-vietnam-checkin-backend.onrender.com",
-      {
-        withCredentials: true,
-        transports: ["websocket"],
-        reconnection: true,
-        reconnectionAttempts: 5,
-        reconnectionDelay: 1000,
-      }
+      { /*withCredentials: true,*/ transports: ['websocket'] }
     );
     setSocket(socketInstance);
 
@@ -61,25 +54,13 @@ export default function CheckinScreen({
     return () => socketInstance.disconnect();
   }, [setPhoneNumber, phoneNumber]);
 
-  // Debounce the emit function to avoid sending partial data
-  const emitPhoneUpdate = (value) => {
-    if (socket) {
-      socket.emit("phone", value);
-      console.log(`Sent phone number: ${value}`);
-    } else {
-      console.log("Error: Not connected to server");
-    }
-  };
-
   const handleNumberClick = (num: string) => {
     if (phoneNumber.length < 10 && /^\d$/.test(num)) {
       const newPhoneNumber = phoneNumber + num;
       setPhoneNumber(newPhoneNumber);
       if (newPhoneNumber.length <= 10) {
         if (socket) {
-          //debouncedEmit(newPhoneNumber, socket);
-          //socket.emit("phone", newPhoneNumber);
-          emitPhoneUpdate(newPhoneNumber); // Will be debounced by <Debounce />
+          socket.emit("phone", newPhoneNumber);
           console.log(`Sent phone number: ${newPhoneNumber}`);
         } else {
           console.log("Error: Not connected to server");
@@ -407,29 +388,12 @@ export default function CheckinScreen({
           </div>
 
           <div className="mb-8">
-          <Debounce
-              func={emitPhoneUpdate}
-              wait={300}
-              options={{ leading: false, trailing: true }}
+            <div
+              className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800"
+              style={{ color: "#fff" }}
             >
-              {(debouncedEmit) => (
-                <div
-                  className="phone-input h-14 border-2 border-gray-200 rounded-lg flex items-center justify-center text-3xl font-bold text-gray-800"
-                  style={{ color: "#fff" }}
-                >
-                  {formatPhoneNumber(phoneNumber) || "xxx-xxx-xxxx"}
-                  <input
-                    type="hidden"
-                    value={phoneNumber}
-                    onChange={(e) => {
-                      const newValue = e.target.value;
-                      setPhoneNumber(newValue);
-                      debouncedEmit(newValue);
-                    }}
-                  />
-                </div>
-              )}
-            </Debounce>
+              {formatPhoneNumber(phoneNumber) || "xxx-xxx-xxxx"}
+            </div>
             {checkinError && (
               <div className="mt-2 text-center">
                 <p
