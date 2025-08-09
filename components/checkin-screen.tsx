@@ -58,7 +58,7 @@ export default function CheckinScreen({
   // Debounce the emit function to avoid sending partial data
   const debouncedEmit = debounce((value, socket) => {
     socket.emit('phone', value);
-  }, 500);
+  }, 300);
 
   const handleNumberClick = (num: string) => {
     if (phoneNumber.length < 10 && /^\d$/.test(num)) {
